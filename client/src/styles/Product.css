@@ -1,0 +1,189 @@
+/* ==========================
+   Product Card
+========================== */
+
+.product-card {
+  border: none;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+  transition: all 0.35s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================
+   Product Image
+========================== */
+
+.product-card .card-img-top {
+  width: 100%;
+  height: 280px !important;
+  object-fit: cover !important;
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover .card-img-top {
+  transform: scale(1.08);
+}
+
+/* ==========================
+   Discount Badge
+========================== */
+
+.product-card .badge.bg-danger {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 30px;
+}
+
+/* ==========================
+   Wishlist
+========================== */
+
+.wishlist {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 42px;
+  height: 42px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #dc3545;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,.15);
+  z-index: 10;
+  transition: 0.3s;
+}
+
+.wishlist:hover {
+  background: #dc3545;
+  color: white;
+}
+
+/* ==========================
+   Card Body
+========================== */
+
+.product-card .card-body {
+  padding: 20px;
+}
+
+/* Category */
+
+.product-card small {
+  color: #0d6efd !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Title */
+
+.product-card .card-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+  margin: 10px 0;
+  min-height: 55px;
+}
+
+/* Rating */
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #f5b301;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Price */
+
+.product-card h5 {
+  color: #198754;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.product-card h5 span {
+  color: #888 !important;
+  font-size: 17px !important;
+}
+
+/* Stock Badge */
+
+.product-card .badge.bg-success,
+.product-card .badge.bg-danger {
+  border-radius: 30px;
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+/* Buttons */
+
+.product-card .btn {
+  border-radius: 30px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.product-card .btn-primary {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.product-card .btn-outline-dark {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.product-card .btn:hover {
+  transform: scale(1.05);
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 992px) {
+  .product-card .card-img-top {
+    height: 240px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-card .card-img-top {
+    height: 220px !important;
+  }
+
+  .product-card .card-title {
+    font-size: 18px;
+    min-height: auto;
+  }
+
+  .product-card h5 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 576px) {
+  .product-card .card-img-top {
+    height: 200px !important;
+  }
+}

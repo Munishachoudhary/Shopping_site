@@ -1,0 +1,116 @@
+/* Page */
+.admin-users {
+  display: flex;
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+/* Content */
+.admin-users-content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Header */
+.admin-users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin-users-header h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Search Box */
+.search-box {
+  width: 300px;
+  border-radius: 5px;
+}
+
+/* Table Container */
+.users-table {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+/* Table */
+.users-table table {
+  margin-bottom: 0;
+}
+
+.users-table th {
+  background: #0d6efd;
+  color: white;
+  text-align: center;
+}
+
+.users-table td {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Role Badge */
+.role-admin {
+  background: #198754;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.role-user {
+  background: #6c757d;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* Buttons */
+.view-btn {
+  margin-right: 5px;
+}
+
+.admin-btn {
+  margin-right: 5px;
+}
+
+.delete-btn {
+  margin-top: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+  .admin-users-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .users-table {
+    overflow-x: auto;
+  }
+
+  .users-table th,
+  .users-table td {
+    font-size: 14px;
+  }
+
+  .view-btn,
+  .admin-btn,
+  .delete-btn {
+    width: 100%;
+    margin: 3px 0;
+  }
+
+}

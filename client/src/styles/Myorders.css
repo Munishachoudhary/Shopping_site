@@ -1,0 +1,136 @@
+.my-orders-page {
+  background: #f8f9fa;
+  min-height: 100vh;
+  padding: 50px 0;
+}
+
+.orders-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 30px;
+}
+
+.order-card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.order-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.order-header {
+  background: linear-gradient(135deg, #0d6efd, #3b82f6);
+  color: white;
+  padding: 15px 20px;
+}
+
+.order-header h5 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.order-body {
+  padding: 20px;
+}
+
+.order-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.order-info:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.order-label {
+  font-weight: 600;
+  color: #555;
+}
+
+.order-value {
+  font-weight: 500;
+  color: #222;
+}
+
+.order-total {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #198754;
+}
+
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-shipped {
+  background: #cfe2ff;
+  color: #084298;
+}
+
+.status-delivered {
+  background: #d1e7dd;
+  color: #0f5132;
+}
+
+.empty-orders {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.empty-orders h4 {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.empty-orders p {
+  color: #888;
+}
+
+.orders-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+@media (max-width: 768px) {
+  .orders-title {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .order-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .order-body {
+    padding: 16px;
+  }
+}
