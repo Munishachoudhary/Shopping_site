@@ -94,7 +94,7 @@ function Register() {
           Already have an account?{" "}
           <span
             style={{ color: "blue", cursor: "pointer" }}
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/")}
           >
             Login
           </span>
