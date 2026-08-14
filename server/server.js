@@ -9,6 +9,10 @@ import cartRoutes from "./routes/cartRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
+
+
+import { sendEmail } from './utils/sendEmail.js';
+
 const PORT = process.env.PORT || 5000;
 
 dotenv.config();
@@ -17,18 +21,24 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://mern-ecommerce-five-iota.vercel.app",
+  ],
+  credentials: true,
+}));
 
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 
-app.use("/api/products",productRoutes);
+app.use("/api/products", productRoutes);
 
 app.use("/api/cart", cartRoutes);
 
 app.use("/api/orders", orderRoutes);
 
-app.use("/api/users",userRoutes);
+app.use("/api/users", userRoutes);
 
 app.use("/api/dashboard", dashboardRoutes);
 
@@ -36,7 +46,6 @@ app.listen(PORT, () => {
   console.log(`Server Running on ${PORT}`);
 });
 
-import { sendEmail } from './utils/sendEmail.js';
 
 app.get('/test-email', async (req, res) => {
   try {
