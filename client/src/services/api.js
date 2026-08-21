@@ -1,9 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://shopping-site-2-15te.onrender.com/api",
-   withCredentials: true,
-  
+  baseURL: "https://shopping-site-2-15te.onrender.com",
 });
 
 // Add JWT token to every request
