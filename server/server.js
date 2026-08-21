@@ -9,10 +9,11 @@ import cartRoutes from "./routes/cartRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import dashboardRoutes from "./routes/dashboardRoutes.js";
-import { sendEmail } from './utils/sendEmail.js';
-const PORT = process.env.PORT || 5000;
+import { sendEmail } from "./utils/sendEmail.js";
 
 dotenv.config();
+
+const PORT = process.env.PORT || 5000;
 
 connectDB();
 
@@ -21,39 +22,37 @@ const app = express();
 app.use(
   cors({
     origin: "https://shopping-site-6itp.vercel.app",
-    credentials: true,
   })
 );
 
 app.use(express.json());
-app.use("/api/auth", authRoutes);
 
-app.use("/api/products", productRoutes);
-
-app.use("/api/cart", cartRoutes);
-
-app.use("/api/orders", orderRoutes);
-
-app.use("/api/users", userRoutes);
-
-app.use("/api/dashboard", dashboardRoutes);
-
-app.listen(PORT, () => {
-  console.log(`Server Running on ${PORT}`);
+app.get("/", (req, res) => {
+  res.send("Shopping Site API is running successfully");
 });
 
+app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
-app.get('/test-email', async (req, res) => {
+app.get("/test-email", async (req, res) => {
   try {
     await sendEmail(
-      'munishachoudhary15@gmail.com',
-      'Test Email',
-      '<h2>Email is working successfully!</h2>'
+      "munishachoudhary15@gmail.com",
+      "Test Email",
+      "<h2>Email is working successfully!</h2>"
     );
 
-    res.send('Email sent successfully');
+    res.send("Email sent successfully");
   } catch (error) {
     console.error(error);
     res.status(500).send(error.message);
   }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server Running on ${PORT}`);
 });
