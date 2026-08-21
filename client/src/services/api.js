@@ -1,10 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://mern-ecommerce-2-j6cc.onrender.com/api",
-  headers: {
-    "Content-Type": "application/json",
-  },
+  baseURL: "https://shopping-site-2-15te.onrender.com",
+  
 });
 
 // Add JWT token to every request
