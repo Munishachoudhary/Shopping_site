@@ -19,12 +19,23 @@ connectDB();
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://shopping-site-6itp.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "https://shopping-site-6itp.vercel.app",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
   })
 );
-
 app.use(express.json());
 
 app.get("/", (req, res) => {
