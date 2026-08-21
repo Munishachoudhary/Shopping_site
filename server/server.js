@@ -20,11 +20,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:3000",
-      "https://shopping-site-6itp.vercel.app",
-    ],
+    origin: "https://shopping-site-6itp.vercel.app",
     credentials: true,
   })
 );
@@ -32,13 +28,13 @@ app.use(
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 
-app.use("/api/products",productRoutes);
+app.use("/api/products", productRoutes);
 
 app.use("/api/cart", cartRoutes);
 
 app.use("/api/orders", orderRoutes);
 
-app.use("/api/users",userRoutes);
+app.use("/api/users", userRoutes);
 
 app.use("/api/dashboard", dashboardRoutes);
 
