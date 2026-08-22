@@ -1,5 +1,16 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { useState } from "react";
+
+import {
+  FaTshirt,
+  FaFemale,
+  FaMale,
+  FaShoePrints,
+  FaHome,
+  FaSpa,
+  FaGem,
+} from "react-icons/fa";
+
 import NavbarComponent from "../components/Navbar";
 import Hero from "../components/Hero";
 import CategorySidebar from "../components/CategorySidebar";
@@ -7,70 +18,183 @@ import FeaturedProducts from "./FeaturedProducts";
 import Offers from "./Offers";
 import Testimonials from "../components/Testimonials";
 import Footer from "../components/Footer";
+
 import "../styles/Home.css";
 
 function Home() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [search, setSearch] = useState("");
 
+  /* =====================================================
+     CATEGORIES
+  ===================================================== */
+
   const categories = [
-    { name: "Ethnic Wear", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=300" },
-    { name: "Western Dresses", image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=300" },
-    { name: "Menswear", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300" },
-    { name: "Footwear", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300" },
-    { name: "Home Decor", image: "https://images.unsplash.com/photo-1517705008128-361805f42e86?w=300" },
-    { name: "Beauty", image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=300" },
-    { name: "Accessories", image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=300" }
+    {
+      name: "Ethnic Wear",
+      icon: <FaTshirt />,
+    },
+    {
+      name: "Western Dresses",
+      icon: <FaFemale />,
+    },
+    {
+      name: "Menswear",
+      icon: <FaMale />,
+    },
+    {
+      name: "Footwear",
+      icon: <FaShoePrints />,
+    },
+    {
+      name: "Home Decor",
+      icon: <FaHome />,
+    },
+    {
+      name: "Beauty",
+      icon: <FaSpa />,
+    },
+    {
+      name: "Accessories",
+      icon: <FaGem />,
+    },
   ];
 
   return (
     <div className="home-page">
-      <NavbarComponent search={search} setSearch={setSearch} />
+
+      {/* =================================================
+          NAVBAR
+      ================================================= */}
+
+      <NavbarComponent
+        search={search}
+        setSearch={setSearch}
+      />
+
+
+      {/* =================================================
+          HERO
+      ================================================= */}
+
       <Hero />
 
+
+      {/* =================================================
+          CATEGORIES
+      ================================================= */}
+
       <section className="categories-section">
-        <h3 className="heading">Categories</h3>
+
+        <h3 className="heading">
+          Categories
+        </h3>
+
         <div className="container">
+
           <div className="categories-row">
-            {categories.map((category, index) => (
+
+            {categories.map((category) => (
+
               <div
                 className="category-item"
-                key={index}
-                onClick={() => setSelectedCategory(category.name)}
+                key={category.name}
+                onClick={() =>
+                  setSelectedCategory(category.name)
+                }
               >
+
+                {/* Circular Icon */}
+
                 <div className="category-card">
-                  <img src={category.image} alt={category.name} />
+
+                  {category.icon}
+
                 </div>
-                <p className="category-name">{category.name}</p>
+
+
+                {/* Category Name */}
+
+                <p className="category-name">
+                  {category.name}
+                </p>
+
               </div>
+
             ))}
+
           </div>
+
         </div>
+
       </section>
+
+
+      {/* =================================================
+          OFFERS
+      ================================================= */}
 
       <Offers />
 
+
+      {/* =================================================
+          PRODUCTS SECTION
+      ================================================= */}
+
       <section className="home-section">
+
         <Container>
+
           <Row>
-            <Col lg={3} md={4} className="sidebar-column">
-              <CategorySidebar onCategorySelect={setSelectedCategory} />
+
+            {/* Sidebar */}
+
+            <Col
+              lg={3}
+              md={4}
+              className="sidebar-column"
+            >
+              <CategorySidebar
+                onCategorySelect={setSelectedCategory}
+              />
             </Col>
 
+
+            {/* Products */}
+
             <Col lg={9} md={8}>
+
               <div className="products-column">
+
                 <FeaturedProducts
                   search={search}
                   category={selectedCategory}
                 />
+
               </div>
+
             </Col>
+
           </Row>
+
         </Container>
+
       </section>
 
+
+      {/* =================================================
+          TESTIMONIALS
+      ================================================= */}
+
       <Testimonials />
+
+
+      {/* =================================================
+          FOOTER
+      ================================================= */}
+
       <Footer />
+
     </div>
   );
 }

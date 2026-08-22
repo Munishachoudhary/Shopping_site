@@ -1,60 +1,259 @@
-.hero-img{
-    height:500px;
-    object-fit:cover;
-    filter:brightness(60%);
+/* =====================================================
+   HERO SECTION
+===================================================== */
+
+.hero-img {
+  height: 500px;
+  width: 100%;
+
+  object-fit: cover;
+
+  /* Dark overlay effect */
+  filter: brightness(45%);
 }
 
-.hero-content{
-text-align: center;
-margin: 10% 0%;
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.hero-content {
+  text-align: center;
+
+  margin: 10% 0;
+
+  color: #fff;
+
+  z-index: 2;
 }
 
-.hero-content h1{
-    font-size:60px;
-    font-weight:bold;
+.hero-content h1 {
+  font-size: 60px;
+
+  font-weight: 800;
+
+  line-height: 1.1;
+
+  margin-bottom: 15px;
+
+  color: #fff;
+
+  text-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
 }
 
-.hero-content p{
-    font-size:22px;
-    margin:10px 0;
+
+/* Yellow highlighted text */
+
+.hero-content h1 span {
+  color: #ffd700;
 }
 
-.offer{
-    background:#ff4d4f;
-    color:white;
-    padding:8px 18px;
-    border-radius:20px;
-    font-size:18px;
-    display:inline-block;
-    margin-bottom:20px;
+
+/* Paragraph */
+
+.hero-content p {
+  font-size: 22px;
+
+  margin: 10px 0 25px;
+
+  color: #f1f1f1;
+
+  line-height: 1.6;
 }
 
-.hero-content button{
-    padding:12px 30px;
-    font-size:18px;
+
+/* =====================================================
+   OFFER BADGE
+===================================================== */
+
+.offer {
+  background: #ffd700;
+
+  color: #111;
+
+  padding: 8px 20px;
+
+  border-radius: 30px;
+
+  font-size: 17px;
+
+  font-weight: 700;
+
+  display: inline-block;
+
+  margin-bottom: 20px;
+
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
 }
 
-@media(max-width:768px){
 
-.hero-img{
-    height:400px;
+/* =====================================================
+   HERO BUTTON
+===================================================== */
+
+.hero-content button {
+  padding: 13px 32px;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  border: 2px solid #ffd700;
+
+  border-radius: 8px;
+
+  background: #ffd700;
+
+  color: #111;
+
+  transition: all 0.3s ease;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
-.hero-content{
-    bottom:15%;
-    text-align:center;
+.hero-content button:hover {
+  background: #111;
+
+  color: #ffd700;
+
+  border-color: #ffd700;
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 8px 22px rgba(255, 215, 0, 0.25);
 }
 
-.hero-content h1{
-    font-size:32px;
+
+/* =====================================================
+   OPTIONAL DARK HERO OVERLAY
+===================================================== */
+
+.hero-container {
+  position: relative;
+
+  overflow: hidden;
 }
 
-.hero-content p{
-    font-size:16px;
+.hero-container::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.65),
+    rgba(0, 0, 0, 0.2)
+  );
+
+  pointer-events: none;
 }
 
-.offer{
-    font-size:14px;
+
+/* Keep content above overlay */
+
+.hero-container .hero-content {
+  position: relative;
+
+  z-index: 2;
 }
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 992px) {
+
+  .hero-img {
+    height: 450px;
+  }
+
+  .hero-content h1 {
+    font-size: 48px;
+  }
+
+  .hero-content p {
+    font-size: 19px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .hero-img {
+    height: 400px;
+  }
+
+  .hero-content {
+    margin: 0;
+
+    padding: 0 20px;
+
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 34px;
+
+    line-height: 1.2;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+
+    margin: 10px 0 20px;
+  }
+
+  .offer {
+    font-size: 14px;
+
+    padding: 7px 16px;
+
+    margin-bottom: 15px;
+  }
+
+  .hero-content button {
+    padding: 11px 25px;
+
+    font-size: 16px;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .hero-img {
+    height: 350px;
+  }
+
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+
+  .offer {
+    font-size: 13px;
+  }
+
+  .hero-content button {
+    padding: 10px 22px;
+
+    font-size: 15px;
+  }
 
 }

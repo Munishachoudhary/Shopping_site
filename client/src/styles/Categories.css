@@ -1,57 +1,396 @@
+/* =====================================================
+   CATEGORIES PAGE
+===================================================== */
+
 .categories-page {
-  background: #f8f9fa;
+  background: #f7f7f7;
+
   min-height: 100vh;
-  padding: 50px 0;
+
+  padding: 60px 0 80px;
 }
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.categories-header {
+  text-align: center;
+
+  margin-bottom: 45px;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
 
 .categories-title {
   text-align: center;
+
   font-size: 36px;
-  font-weight: bold;
-  margin-bottom: 40px;
-  color: #222;
+
+  font-weight: 800;
+
+  color: #111;
+
+  margin: 0;
+
+  position: relative;
+
+  letter-spacing: -0.5px;
 }
 
-.category-card {
-  border: none;
-  border-radius: 15px;
-  text-align: center;
-  padding: 30px 20px;
-  cursor: pointer;
-  transition: 0.3s;
-  box-shadow: 0 5px 15px rgba(0,0,0,.08);
-  background: white;
+
+/* Yellow underline */
+
+.categories-title::after {
+  content: "";
+
+  display: block;
+
+  width: 75px;
+
+  height: 4px;
+
+  background: #ffd700;
+
+  border-radius: 10px;
+
+  margin: 12px auto 0;
 }
+
+
+/* =====================================================
+   SUBTITLE
+===================================================== */
+
+.categories-subtitle {
+  color: #777;
+
+  font-size: 16px;
+
+  margin: 14px 0 0;
+
+  line-height: 1.5;
+}
+
+
+/* =====================================================
+   CATEGORY CARD
+===================================================== */
+
+.category-card {
+  border: 1px solid #e5e5e5;
+
+  border-radius: 16px;
+
+  text-align: center;
+
+  padding: 30px 20px;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+
+  background: #fff;
+
+  height: 100%;
+
+  min-height: 220px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   YELLOW TOP ACCENT
+===================================================== */
+
+.category-card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 4px;
+
+  background: #ffd700;
+
+  transform: scaleX(0);
+
+  transform-origin: center;
+
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover::before {
+  transform: scaleX(1);
+}
+
+
+/* =====================================================
+   CARD HOVER
+===================================================== */
 
 .category-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0,0,0,.15);
+
+  border-color: #ffd700;
+
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
 }
 
+
+/* =====================================================
+   CATEGORY ICON
+   PERFECT CIRCLE
+===================================================== */
+
 .category-icon {
-  font-size: 50px;
-  color: #0d6efd;
-  margin-bottom: 20px;
+  width: 85px;
+
+  height: 85px;
+
+  min-width: 85px;
+
+  min-height: 85px;
+
+  border-radius: 50%;
+
+  background: #ffd700;
+
+  color: #111;
+
+  font-size: 43px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin: 0 auto 20px;
+
+  transition: all 0.3s ease;
+
+  flex-shrink: 0;
+
+  line-height: 1;
+
+  box-shadow: 0 5px 12px rgba(255, 215, 0, 0.25);
 }
+
+
+/* =====================================================
+   ICON HOVER
+===================================================== */
+
+.category-card:hover .category-icon {
+  background: #111;
+
+  color: #ffd700;
+
+  transform: scale(1.08);
+
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =====================================================
+   CATEGORY NAME
+===================================================== */
 
 .category-card h5 {
   font-size: 20px;
-  font-weight: 600;
-  color: #333;
+
+  font-weight: 700;
+
+  color: #111;
+
+  margin: 0 0 8px;
+
+  transition: all 0.3s ease;
 }
 
-@media (max-width:768px) {
+.category-card:hover h5 {
+  color: #b89500;
+}
+
+
+/* =====================================================
+   EXPLORE LINK
+===================================================== */
+
+.category-link {
+  display: inline-block;
+
+  color: #777;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  transition: all 0.3s ease;
+}
+
+.category-card:hover .category-link {
+  color: #111;
+
+  transform: translateX(3px);
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 992px) {
 
   .categories-page {
-    padding: 30px 15px;
+    padding: 50px 20px 70px;
+  }
+
+  .categories-title {
+    font-size: 32px;
+  }
+
+  .categories-header {
+    margin-bottom: 40px;
+  }
+
+  .category-card {
+    padding: 28px 18px;
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .categories-page {
+    padding: 40px 15px 60px;
+  }
+
+  .categories-header {
+    margin-bottom: 35px;
   }
 
   .categories-title {
     font-size: 28px;
   }
 
+  .categories-title::after {
+    width: 60px;
+
+    height: 3px;
+
+    margin-top: 10px;
+  }
+
+  .categories-subtitle {
+    font-size: 14px;
+
+    margin-top: 10px;
+  }
+
+  .category-card {
+    padding: 28px 15px;
+
+    min-height: 200px;
+
+    border-radius: 14px;
+  }
+
+
+  /* Perfect Circle */
+
   .category-icon {
-    font-size: 40px;
+    width: 70px;
+
+    height: 70px;
+
+    min-width: 70px;
+
+    min-height: 70px;
+
+    border-radius: 50%;
+
+    font-size: 36px;
+
+    margin-bottom: 15px;
+  }
+
+  .category-card h5 {
+    font-size: 18px;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 576px) {
+
+  .categories-page {
+    padding: 30px 12px 50px;
+  }
+
+  .categories-title {
+    font-size: 24px;
+  }
+
+  .categories-subtitle {
+    font-size: 13px;
+  }
+
+  .category-card {
+    padding: 25px 15px;
+
+    min-height: 185px;
+
+    border-radius: 12px;
+  }
+
+
+  /* Perfect Circle */
+
+  .category-icon {
+    width: 65px;
+
+    height: 65px;
+
+    min-width: 65px;
+
+    min-height: 65px;
+
+    border-radius: 50%;
+
+    font-size: 32px;
+  }
+
+  .category-card h5 {
+    font-size: 17px;
+  }
+
+  .category-link {
+    font-size: 12px;
   }
 
 }

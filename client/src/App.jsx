@@ -21,7 +21,6 @@ import OrderDetails from "./pages/OrderDetails";
 import Products from "./pages/AllProduct";
 import Categories from "./pages/Categories";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
 import Wishlist from "./pages/Wishlist";
 import OrderTracking from "./pages/OrderTracking";
 import Contact from "./pages/Contact";
@@ -61,11 +60,10 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/track-order" element={<OrderTracking />} />
         <Route path="/contact" element={<Contact />} />
-        
+
       </Routes>
 
     </BrowserRouter>

@@ -110,7 +110,7 @@ function NavbarComponent() {
             {/* HOME */}
             <Nav.Link
               as={Link}
-              to="/home"
+              to="/"
             >
               <FaHome className="me-1" />
               Home
