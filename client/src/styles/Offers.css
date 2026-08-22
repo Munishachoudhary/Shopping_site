@@ -1,47 +1,135 @@
-.offers-section{
-  padding:70px 0;
-  background:#f8f9fa;
+/* ==========================
+   Offers Section
+========================== */
+
+.offers-section {
+  padding: 70px 0;
+  background: #f8f9fa;
+  min-height: 100vh;
 }
-.section-title{
-  text-align:center;
-  font-size:36px;
-  font-weight:700;
-  margin-bottom:40px;
+
+/* ==========================
+   Section Title
+========================== */
+
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
-.offer-card{
-  border:0;
-  border-radius:15px;
-  min-height:250px;
-  color:#fff;
-  overflow:hidden;
-  transition:0.3s ease;
+
+/* ==========================
+   Offer Card
+========================== */
+
+.offer-card {
+  border: 0;
+  border-radius: 20px;
+  min-height: 280px;
+  color: #fff;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
-.offer-card:hover{
-  transform:translateY(-8px);
+
+.offer-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.2);
 }
-.offer-one{
-  background:linear-gradient(135deg,#ff512f,#dd2476);
+
+/* Different Offer Backgrounds */
+
+.offer-one {
+  background: linear-gradient(135deg, #ff512f, #dd2476);
 }
-.offer-two{
-  background:linear-gradient(135deg,#396afc,#2948ff);
+
+.offer-two {
+  background: linear-gradient(135deg, #396afc, #2948ff);
 }
-.offer-card span{
-  font-size:16px;
-  font-weight:600;
+
+.offer-three {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
 }
-.offer-card h2{
-  font-size:36px;
-  margin:15px 0;
+
+/* ==========================
+   Offer Icon
+========================== */
+
+.offer-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
 }
-.offer-card p{
-  font-size:17px;
+
+/* ==========================
+   Offer Content
+========================== */
+
+.offer-card span {
+  font-size: 16px;
+  font-weight: 600;
 }
-.offer-card button{
-  border:0;
-  background:#fff;
-  color:#222;
-  padding:10px 24px;
-  border-radius:25px;
-  font-weight:600;
-  margin-top:10px;
+
+.offer-card h2 {
+  font-size: 36px;
+  margin: 15px 0;
+  font-weight: 700;
+}
+
+.offer-card p {
+  font-size: 17px;
+  margin-bottom: 15px;
+}
+
+/* ==========================
+   Coupon Code
+========================== */
+
+.coupon-code {
+  border: 2px dashed rgba(255, 255, 255, 0.8);
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  display: inline-block;
+  margin: 10px 0;
+}
+
+/* ==========================
+   Button
+========================== */
+
+.offer-card button {
+  border: 0;
+  background: #fff;
+  color: #222;
+  padding: 10px 24px;
+  border-radius: 25px;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.offer-card button:hover {
+  transform: scale(1.05);
+  background: #f1f1f1;
+}
+
+/* ==========================
+   Responsive
+========================== */
+
+@media (max-width: 768px) {
+  .offers-section {
+    padding: 50px 0;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .offer-card h2 {
+    font-size: 30px;
+  }
 }

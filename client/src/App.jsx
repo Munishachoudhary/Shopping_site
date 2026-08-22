@@ -22,7 +22,8 @@ import Products from "./pages/AllProduct";
 import Categories from "./pages/Categories";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-
+import Wishlist from "./pages/Wishlist";
+import OrderTracking from "./pages/OrderTracking";
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         <Route path="/register" element={<Register />} />
-        
+
         <Route path="/cart" element={<Cart />} />
 
         <Route path="/checkout" element={<Checkout />} />
@@ -54,12 +55,18 @@ function App() {
         <Route path="/admin/users" element={<AdminUsers />} />
         <Route path="/admin/users/:id" element={<UserDetails />} />
 
-        <Route path="/admin/orders" element={<AdminOrders />}/>
-        <Route path="/admin/orders/:id" element={<OrderDetails />}/>
+        <Route path="/admin/orders" element={<AdminOrders />} />
+        <Route path="/admin/orders/:id" element={<OrderDetails />} />
         <Route path="/products" element={<Products />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route
+          path="/track-order"
+          element={<OrderTracking />}
+        />
+
       </Routes>
 
     </BrowserRouter>

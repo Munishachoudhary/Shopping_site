@@ -1,25 +1,51 @@
 import { Card, Button, Badge } from "react-bootstrap";
 import {
   FaHeart,
+  FaRegHeart,
   FaEye,
   FaShoppingCart,
   FaStar,
 } from "react-icons/fa";
+
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
+
 import { CartContext } from "../context/CartContext";
-import "../styles/Product.css"
+import { useWishlist } from "../context/WishlistContext";
+
+import "../styles/Product.css";
 
 function ProductCard({ product }) {
   const navigate = useNavigate();
 
+  // Cart
   const { addToCart } = useContext(CartContext);
 
+  // Wishlist
+  const {
+    addToWishlist,
+    removeFromWishlist,
+    isInWishlist,
+  } = useWishlist();
+
+  const wishlistProduct = isInWishlist(product._id);
+
+  const handleWishlist = () => {
+    if (wishlistProduct) {
+      removeFromWishlist(product._id);
+    } else {
+      addToWishlist(product);
+    }
+  };
+
+  // Discount
   const discount =
     product.oldPrice && product.oldPrice > product.price
       ? Math.round(
-        ((product.oldPrice - product.price) / product.oldPrice) * 100
-      )
+          ((product.oldPrice - product.price) /
+            product.oldPrice) *
+            100
+        )
       : 0;
 
   return (
@@ -36,8 +62,16 @@ function ProductCard({ product }) {
       )}
 
       {/* Wishlist */}
-      <div className="wishlist">
-        <FaHeart />
+      <div
+        className="wishlist"
+        onClick={handleWishlist}
+        style={{ cursor: "pointer" }}
+      >
+        {wishlistProduct ? (
+          <FaHeart className="text-danger" />
+        ) : (
+          <FaRegHeart />
+        )}
       </div>
 
       {/* Image */}
@@ -66,6 +100,7 @@ function ProductCard({ product }) {
 
         <div className="rating mb-2">
           <FaStar className="text-warning" />
+
           <span className="ms-1">
             {product.rating || 4.5}
           </span>
@@ -87,6 +122,7 @@ function ProductCard({ product }) {
           )}
         </h5>
 
+        {/* Stock */}
         <div className="mb-3">
           {product.stock > 0 ? (
             <Badge bg="success">
@@ -99,11 +135,13 @@ function ProductCard({ product }) {
           )}
         </div>
 
+        {/* Buttons */}
         <div className="mt-auto d-flex justify-content-between">
- 
+
           <Button
             variant="primary"
             onClick={() => addToCart(product._id)}
+            disabled={product.stock <= 0}
           >
             <FaShoppingCart className="me-2" />
             Add Cart

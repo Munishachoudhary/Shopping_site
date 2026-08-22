@@ -54,23 +54,36 @@
   position: absolute;
   top: 12px;
   right: 12px;
+
   width: 42px;
   height: 42px;
+
   background: white;
   border-radius: 50%;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #dc3545;
+
+  color: #333;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,.15);
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+
   z-index: 10;
-  transition: 0.3s;
+
+  font-size: 20px;
+
+  transition: all 0.3s ease;
 }
 
 .wishlist:hover {
-  background: #dc3545;
-  color: white;
+  transform: scale(1.12);
+  background: #f8f9fa;
+}
+
+.wishlist .text-danger {
+  color: #dc3545 !important;
 }
 
 /* ==========================
@@ -125,7 +138,9 @@
   font-size: 17px !important;
 }
 
-/* Stock Badge */
+/* ==========================
+   Stock Badge
+========================== */
 
 .product-card .badge.bg-success,
 .product-card .badge.bg-danger {
@@ -134,7 +149,9 @@
   font-size: 13px;
 }
 
-/* Buttons */
+/* ==========================
+   Buttons
+========================== */
 
 .product-card .btn {
   border-radius: 30px;
