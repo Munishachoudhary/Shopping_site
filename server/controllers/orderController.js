@@ -4,58 +4,91 @@ import { sendEmail } from '../utils/sendEmail.js';
 
 export const placeOrder = async (req, res) => {
   try {
-    console.log(req.body);
+    console.log("ORDER BODY:", req.body);
+    console.log("USER:", req.user);
+
+    const {
+      orderItems,
+      shippingAddress,
+      paymentMethod,
+      totalPrice,
+    } = req.body;
+
+    // Validate order items
+    if (!orderItems || orderItems.length === 0) {
+      return res.status(400).json({
+        message: "No order items found",
+      });
+    }
+
+    // Validate shipping address
+    if (
+      !shippingAddress?.fullName ||
+      !shippingAddress?.phone ||
+      !shippingAddress?.address ||
+      !shippingAddress?.city ||
+      !shippingAddress?.state ||
+      !shippingAddress?.pincode
+    ) {
+      return res.status(400).json({
+        message: "Please fill all shipping address fields",
+      });
+    }
+
+    // Validate total
+    if (totalPrice === undefined || totalPrice === null) {
+      return res.status(400).json({
+        message: "Total price is required",
+      });
+    }
 
     const order = new Order({
       user: req.user._id,
-      orderItems: req.body.orderItems,
-      shippingAddress: req.body.shippingAddress,
-      paymentMethod: req.body.paymentMethod,
-      totalPrice: req.body.totalPrice,
+      orderItems,
+      shippingAddress,
+      paymentMethod: paymentMethod || "Cash on Delivery",
+      totalPrice,
     });
 
     const createdOrder = await order.save();
 
-    await Cart.deleteMany({ user: req.user._id });
+    console.log("ORDER CREATED:", createdOrder._id);
 
-    await sendEmail(
-      req.user.email,
-      'Order Confirmation',
-      `
-    <h2>Thank you for your order!</h2>
-    <p>Your order has been placed successfully.</p>
-    <p><strong>Order ID:</strong> ${createdOrder._id}</p>
-    <p><strong>Total:</strong> ₹${createdOrder.totalPrice}</p>
-    <p>We will notify you when your order is shipped.</p>
-  `
-    );
-    if (req.body.status === 'Shipped') {
-      await sendEmail(
-        order.user.email,
-        'Your order has been shipped',
-        `
-      <h2>Order Shipped</h2>
-      <p>Your order <strong>${order._id}</strong> has been shipped.</p>
-      <p>It will reach you soon.</p>
-    `
-      );
+    // Clear cart
+    await Cart.deleteMany({
+      user: req.user._id,
+    });
+
+    // Send email separately so email failure does NOT make order fail
+    try {
+      if (req.user.email) {
+        await sendEmail(
+          req.user.email,
+          "Order Confirmation",
+          `
+            <h2>Thank you for your order!</h2>
+            <p>Your order has been placed successfully.</p>
+            <p><strong>Order ID:</strong> ${createdOrder._id}</p>
+            <p><strong>Total:</strong> ₹${createdOrder.totalPrice}</p>
+            <p>We will notify you when your order is shipped.</p>
+          `
+        );
+      }
+    } catch (emailError) {
+      console.error("EMAIL ERROR:", emailError.message);
     }
 
-    if (req.body.status === 'Delivered') {
-      await sendEmail(
-        order.user.email,
-        'Order Delivered',
-        `
-      <h2>Order Delivered</h2>
-      <p>Your order <strong>${order._id}</strong> has been delivered.</p>
-      <p>Thank you for shopping with us!</p>
-    `
-      );
-    }
+    // IMPORTANT:
+    // Do not use order.user.email here because order.user is ObjectId.
+
     res.status(201).json(createdOrder);
+
   } catch (error) {
-    console.error('PLACE ORDER ERROR:', error);
-    res.status(500).json({ message: error.message });
+    console.error("PLACE ORDER ERROR:", error);
+
+    res.status(500).json({
+      message: error.message,
+    });
   }
 };
 
@@ -110,28 +143,48 @@ export const updateOrderStatus = async (req, res) => {
   try {
     const { status } = req.body;
 
-    const order = await Order.findById(req.params.id).populate('user', 'email name');
+    const order = await Order.findById(req.params.id)
+      .populate("user", "email name");
+
+    if (!order) {
+      return res.status(404).json({
+        message: "Order not found",
+      });
+    }
 
     order.orderStatus = status;
-    await order.save();
-
-    if (status === 'Shipped') {
-      await sendEmail(
-        order.user.email,
-        'Your Order Has Been Shipped',
-        '<h2>Your order has been shipped!</h2>'
-      );
-    }
-
-    if (status === 'Delivered') {
-      await sendEmail(
-        order.user.email,
-        'Order Delivered',
-        '<h2>Your order has been delivered!</h2>'
-      );
-    }
 
     const updatedOrder = await order.save();
+
+    // Send email separately
+    try {
+      if (order.user?.email) {
+        if (status === "Shipped") {
+          await sendEmail(
+            order.user.email,
+            "Your Order Has Been Shipped",
+            `
+              <h2>Your order has been shipped!</h2>
+              <p>Order ID: ${order._id}</p>
+            `
+          );
+        }
+
+        if (status === "Delivered") {
+          await sendEmail(
+            order.user.email,
+            "Order Delivered",
+            `
+              <h2>Your order has been delivered!</h2>
+              <p>Order ID: ${order._id}</p>
+              <p>Thank you for shopping with us!</p>
+            `
+          );
+        }
+      }
+    } catch (emailError) {
+      console.error("STATUS EMAIL ERROR:", emailError.message);
+    }
 
     res.json({
       message: "Order Status Updated Successfully",
@@ -139,6 +192,8 @@ export const updateOrderStatus = async (req, res) => {
     });
 
   } catch (error) {
+    console.error("UPDATE ORDER ERROR:", error);
+
     res.status(500).json({
       message: error.message,
     });
