@@ -153,25 +153,6 @@ function NavbarComponent() {
                   Track Order
                 </NavDropdown.Item>
 
-                {/* Wishlist */}
-                <NavDropdown.Item
-                  as={Link}
-                  to="/wishlist"
-                >
-                  <FaHeart className="me-2 text-danger" />
-                  Wishlist
-
-                  {wishlist.length > 0 && (
-                    <Badge
-                      pill
-                      bg="danger"
-                      className="ms-2"
-                    >
-                      {wishlist.length}
-                    </Badge>
-                  )}
-                </NavDropdown.Item>
-
                 <NavDropdown.Divider />
 
                 {/* Logout */}
