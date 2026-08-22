@@ -29,7 +29,7 @@ function Login() {
       if (data.isAdmin) {
         navigate("/admin");
       } else {
-        navigate("/home");
+        navigate("/");
       }
     } catch (error) {
       alert(error.response?.data?.message || "Login Failed");

@@ -24,7 +24,7 @@ function Register() {
       });
 
       alert(data.message || "Registration Successful");
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       alert(error.response?.data?.message || "Registration Failed");
     }
