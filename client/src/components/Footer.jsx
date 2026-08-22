@@ -24,7 +24,7 @@ function Footer() {
               <li><a href="/products">Products</a></li>
               <li><a href="/categories">Categories</a></li>
               <li><a href="/cart">Cart</a></li>
-              <li><a href="/orders">My Orders</a></li>
+              <li><a href="/myorders">My Orders</a></li>
             </ul>
           </Col>
           <Col lg={3} md={6}>
