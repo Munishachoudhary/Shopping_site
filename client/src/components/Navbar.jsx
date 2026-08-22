@@ -20,6 +20,7 @@ import {
   FaSignOutAlt,
   FaHeart,
   FaBox,
+  FaPhone,
 } from "react-icons/fa";
 
 import { useContext, useState } from "react";
@@ -33,7 +34,7 @@ function NavbarComponent() {
   const { cart = [] } = useContext(CartContext);
 
   // Wishlist
-  const { wishlist } = useWishlist();
+  const { wishlist = [] } = useWishlist();
 
   const [search, setSearch] = useState("");
 
@@ -41,6 +42,7 @@ function NavbarComponent() {
     JSON.parse(localStorage.getItem("user"))
   );
 
+  // Logout
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -50,6 +52,17 @@ function NavbarComponent() {
     window.location.href = "/";
   };
 
+  // Search
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    if (search.trim()) {
+      window.location.href = `/products?search=${encodeURIComponent(
+        search.trim()
+      )}`;
+    }
+  };
+
   return (
     <Navbar
       expand="lg"
@@ -57,17 +70,25 @@ function NavbarComponent() {
       sticky="top"
     >
       <Container>
-        {/* Logo */}
-        <Navbar.Brand as={Link} to="/" className="brand">
+
+        {/* ================= LOGO ================= */}
+        <Navbar.Brand
+          as={Link}
+          to="/"
+          className="brand"
+        >
           Shop<span>Ease</span>
         </Navbar.Brand>
 
-        <Navbar.Toggle />
+        <Navbar.Toggle aria-controls="main-navbar" />
 
-        <Navbar.Collapse>
+        <Navbar.Collapse id="main-navbar">
 
-          {/* Search */}
-          <Form className="search-box mx-auto">
+          {/* ================= SEARCH ================= */}
+          <Form
+            className="search-box mx-auto"
+            onSubmit={handleSearch}
+          >
             <FormControl
               type="search"
               placeholder="Search Products..."
@@ -75,35 +96,58 @@ function NavbarComponent() {
               onChange={(e) => setSearch(e.target.value)}
             />
 
-            <Button variant="primary">
+            <Button
+              type="submit"
+              variant="primary"
+            >
               <FaSearch />
             </Button>
           </Form>
 
-          {/* Links */}
+          {/* ================= NAV LINKS ================= */}
           <Nav className="ms-auto align-items-center">
 
-            {/* Home */}
-            <Nav.Link as={Link} to="/home">
+            {/* HOME */}
+            <Nav.Link
+              as={Link}
+              to="/home"
+            >
               <FaHome className="me-1" />
               Home
             </Nav.Link>
 
-            {/* Products */}
-            <Nav.Link as={Link} to="/products">
+            {/* PRODUCTS */}
+            <Nav.Link
+              as={Link}
+              to="/products"
+            >
               <FaStore className="me-1" />
               Products
             </Nav.Link>
 
-            {/* Wishlist ❤️ */}
+            {/* CONTACT */}
+            <Nav.Link
+              as={Link}
+              to="/contact"
+            >
+              <FaPhone className="me-1" />
+              Contact
+            </Nav.Link>
+
+            {/* WISHLIST */}
             <Nav.Link
               as={Link}
               to="/wishlist"
               className="wishlist-link position-relative"
             >
-              <FaHeart size={20} className="text-danger" />
+              <FaHeart
+                size={20}
+                className="text-danger"
+              />
 
-              <span className="ms-1">Wishlist</span>
+              <span className="ms-1">
+                Wishlist
+              </span>
 
               {wishlist.length > 0 && (
                 <Badge
@@ -116,9 +160,12 @@ function NavbarComponent() {
               )}
             </Nav.Link>
 
-            {/* Profile */}
+            {/* ================= PROFILE ================= */}
             {!user ? (
-              <Nav.Link as={Link} to="/login">
+              <Nav.Link
+                as={Link}
+                to="/login"
+              >
                 <FaUser className="me-1" />
                 Login
               </Nav.Link>
@@ -133,14 +180,17 @@ function NavbarComponent() {
                 id="profile-dropdown"
                 align="end"
               >
-                {/* Greeting */}
+
+                {/* GREETING */}
                 <div className="px-3 py-2 profile-greeting">
-                  <strong>Hello {user.name}</strong>
+                  <strong>
+                    Hello {user.name}
+                  </strong>
                 </div>
 
                 <NavDropdown.Divider />
 
-                {/* My Orders */}
+                {/* MY ORDERS */}
                 <NavDropdown.Item
                   as={Link}
                   to="/myorders"
@@ -148,22 +198,30 @@ function NavbarComponent() {
                   <FaBox className="me-2" />
                   My Orders
                 </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/track-order">
+
+                {/* TRACK ORDER */}
+                <NavDropdown.Item
+                  as={Link}
+                  to="/track-order"
+                >
                   <FaBox className="me-2" />
                   Track Order
                 </NavDropdown.Item>
 
                 <NavDropdown.Divider />
 
-                {/* Logout */}
-                <NavDropdown.Item onClick={logout}>
+                {/* LOGOUT */}
+                <NavDropdown.Item
+                  onClick={logout}
+                >
                   <FaSignOutAlt className="me-2" />
                   Logout
                 </NavDropdown.Item>
+
               </NavDropdown>
             )}
 
-            {/* Cart */}
+            {/* ================= CART ================= */}
             <Nav.Link
               as={Link}
               to="/cart"
@@ -171,7 +229,9 @@ function NavbarComponent() {
             >
               <FaShoppingCart size={20} />
 
-              <span className="ms-1">Cart</span>
+              <span className="ms-1">
+                Cart
+              </span>
 
               {cart.length > 0 && (
                 <Badge
@@ -185,6 +245,7 @@ function NavbarComponent() {
             </Nav.Link>
 
           </Nav>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>

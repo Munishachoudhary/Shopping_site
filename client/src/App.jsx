@@ -24,6 +24,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Wishlist from "./pages/Wishlist";
 import OrderTracking from "./pages/OrderTracking";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -62,11 +63,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/wishlist" element={<Wishlist />} />
-        <Route
-          path="/track-order"
-          element={<OrderTracking />}
-        />
-
+        <Route path="/track-order" element={<OrderTracking />} />
+        <Route path="/contact" element={<Contact />} />
+        
       </Routes>
 
     </BrowserRouter>
